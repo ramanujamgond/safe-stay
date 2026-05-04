@@ -1,7 +1,7 @@
 // Vercel Serverless Function to serve hotel data
 const hotels = require('../db.json').hotel;
 
-module.exports = (req, res) => {
+export default function handler(req, res) {
   // Enable CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
@@ -49,4 +49,4 @@ module.exports = (req, res) => {
   const paginatedHotels = filteredHotels.slice(startIndex, endIndex);
 
   res.status(200).json(paginatedHotels);
-};
+}

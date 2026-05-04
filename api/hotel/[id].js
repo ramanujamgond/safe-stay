@@ -1,7 +1,7 @@
 // Vercel Serverless Function to serve single hotel data
 const hotels = require('../../db.json').hotel;
 
-module.exports = (req, res) => {
+export default function handler(req, res) {
   // Enable CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
@@ -19,4 +19,4 @@ module.exports = (req, res) => {
   } else {
     res.status(404).json({ error: 'Hotel not found' });
   }
-};
+}
