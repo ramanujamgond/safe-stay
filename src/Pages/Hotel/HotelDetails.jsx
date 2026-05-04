@@ -54,8 +54,9 @@ function HotelDetails({ person }) {
   });
 
   const SingleData = () => {
+    const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
     axios
-      .get(`http://localhost:3001/hotel/${id}`)
+      .get(`${API_BASE_URL}/hotel/${id}`)
       .then((res) => {
         // console.log(res.data);
         setSingleHotel(res.data);

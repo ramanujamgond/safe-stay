@@ -44,7 +44,8 @@ const HotelSubNavbar = () => {
   const [houseRulesValue, setHouseRulesValue] = useState("");
   const [page, setPage] = useState(1);
   const [womenFriendlyOnly, setWomenFriendlyOnly] = useState(false);
-  // https://makemytrip-api-data.onrender.com/hotel?q=${query}&_page=${page}&_limit=8
+  // API Base URL from environment variable
+  const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
 
   //redux importing
 
@@ -74,7 +75,7 @@ const HotelSubNavbar = () => {
     dispatch(hotelRequestAction());
     axios
       .get(
-        `http://localhost:3001/hotel?_page=${page}_limit=10`
+        `${API_BASE_URL}/hotel?_page=${page}_limit=10`
       )
       .then((res) => {
         // console.log(res.data);
@@ -101,7 +102,7 @@ const HotelSubNavbar = () => {
     dispatch(hotelRequestAction());
     axios
       .get(
-        `http://localhost:3001/hotel?q=${searchHotel}&_page=${page}&_limit=10`
+        `${API_BASE_URL}/hotel?q=${searchHotel}&_page=${page}&_limit=10`
       )
       .then((res) => {
         dispatch(hotelSuccessAction(res.data));
@@ -117,7 +118,7 @@ const HotelSubNavbar = () => {
     dispatch(hotelRequestAction());
     axios
       .get(
-        `http://localhost:3001/hotel?_page=${page}&_limit=10&_sort=price&_order=${sorting}`
+        `${API_BASE_URL}/hotel?_page=${page}&_limit=10&_sort=price&_order=${sorting}`
       )
       .then((res) => {
         dispatch(hotelSuccessAction(res.data));
@@ -138,7 +139,7 @@ const HotelSubNavbar = () => {
     dispatch(hotelRequestAction());
     axios
       .get(
-        `http://localhost:3001/hotel?_page=${page}&_limit=10&price_gte=${
+        `${API_BASE_URL}/hotel?_page=${page}&_limit=10&price_gte=${
           priceValue - 1000
         }&price_lte=${priceValue}`
       )
