@@ -1,6 +1,5 @@
 import {
   Box,
-  chakra,
   Container,
   Stack,
   Text,
@@ -12,13 +11,11 @@ import {
   SimpleGrid,
   StackDivider,
   useColorModeValue,
-  VisuallyHidden,
   List,
   ListItem,
   HStack,
   Badge,
   Icon,
-  Divider,
   Alert,
   AlertIcon,
   AlertTitle,
@@ -26,7 +23,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { FaInstagram, FaTwitter, FaYoutube, FaShieldAlt, FaUserFriends, FaUsers, FaExclamationTriangle, FaCheckCircle } from "react-icons/fa";
+import { FaShieldAlt, FaUserFriends, FaUsers, FaExclamationTriangle, FaCheckCircle } from "react-icons/fa";
 import { MdLocalShipping } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import Carousel from "better-react-carousel";
@@ -78,8 +75,6 @@ function HotelDetails({ person }) {
     img2,
     img3,
     img4,
-    rating,
-    ratingText,
     name,
     place,
     description,
@@ -87,7 +82,6 @@ function HotelDetails({ person }) {
     taxes,
     price,
     womenSafetyScore,
-    isWomenFriendly,
     womenFriendlyCertified,
     currentGuests,
     staffInfo,
@@ -173,16 +167,16 @@ function HotelDetails({ person }) {
               <Box>
                 <Carousel cols={2} rows={1} gap={10} loop>
                   <Carousel.Item>
-                    <img width="100%" src={img1} />
+                    <img width="100%" src={img1} alt="Hotel view 1" />
                   </Carousel.Item>
                   <Carousel.Item>
-                    <img width="100%" src={img2} />
+                    <img width="100%" src={img2} alt="Hotel view 2" />
                   </Carousel.Item>
                   <Carousel.Item>
-                    <img width="100%" src={img3} />
+                    <img width="100%" src={img3} alt="Hotel view 3" />
                   </Carousel.Item>
                   <Carousel.Item>
-                    <img width="100%" src={img4} />
+                    <img width="100%" src={img4} alt="Hotel view 4" />
                   </Carousel.Item>
                 </Carousel>
               </Box>

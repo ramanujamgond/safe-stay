@@ -31,7 +31,6 @@ import {
   hotelRequestAction,
   hotelSuccessAction,
 } from "../../Redux/HotelRedux/actionHotel";
-import HotelDetails from "./HotelDetails";
 
 const HotelSubNavbar = () => {
   // Default Data
@@ -55,12 +54,11 @@ const HotelSubNavbar = () => {
   };
   console.log(sorting);
 
-  const { hotel, isLoading, isError } = useSelector((store) => {
+  const { hotel, isLoading } = useSelector((store) => {
     // console.log(store.reducerHotel);
     return {
       hotel: store.reducerHotel.hotel,
       isLoading: store.reducerHotel.isLoading,
-      isError: store.reducerHotel.isError,
     };
   }, shallowEqual);
   
@@ -435,7 +433,7 @@ const HotelSubNavbar = () => {
           {isLoading && (
             <Image src="https://i.ibb.co/2jqK3wx/loader.gif" alt="...Loading" />
           )}
-          {hotel.length == 0 && (
+          {hotel.length === 0 && (
             <Heading>
               We apologize for any inconvenience, but unfortunately, we do not
               currently have any hotels available at the {searchHotel} location.
