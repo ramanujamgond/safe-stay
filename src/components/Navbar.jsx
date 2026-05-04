@@ -36,8 +36,19 @@ export const Navbar = () => {
   return (
     <header>
       <div className="logo">
-        <Link to="/">
-          <img src="https://i.ibb.co/FqKTWS4/tth3.png" alt="not visible" />
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <h1 style={{ 
+            color: '#fff', 
+            fontSize: '28px', 
+            fontWeight: 'bold',
+            margin: 0,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px'
+          }}>
+            <span style={{ color: '#ff69b4' }}>🛡️</span>
+            SafeStay
+          </h1>
         </Link>
       </div>
       <div className="icons">

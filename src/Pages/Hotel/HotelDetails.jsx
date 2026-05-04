@@ -16,10 +16,17 @@ import {
   List,
   ListItem,
   HStack,
+  Badge,
+  Icon,
+  Divider,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaInstagram, FaTwitter, FaYoutube, FaShieldAlt, FaUserFriends, FaUsers, FaExclamationTriangle, FaCheckCircle } from "react-icons/fa";
 import { MdLocalShipping } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import Carousel from "better-react-carousel";
@@ -51,7 +58,7 @@ function HotelDetails({ person }) {
 
   const SingleData = () => {
     axios
-      .get(`https://makemytrip-api-data.onrender.com/hotel/${id}`)
+      .get(`http://localhost:3001/hotel/${id}`)
       .then((res) => {
         // console.log(res.data);
         setSingleHotel(res.data);
@@ -79,6 +86,14 @@ function HotelDetails({ person }) {
     additional,
     taxes,
     price,
+    womenSafetyScore,
+    isWomenFriendly,
+    womenFriendlyCertified,
+    currentGuests,
+    staffInfo,
+    groupBookingAlert,
+    amenities,
+    womenReviews,
   } = singleHotel;
 
   return (
@@ -119,6 +134,40 @@ function HotelDetails({ person }) {
               >
                 Place : {place}
               </Text>
+              
+              {/* Safety Badges */}
+              <Flex gap="2" justifyContent="center" flexWrap="wrap" mt="3">
+                {womenSafetyScore && (
+                  <Badge 
+                    colorScheme={
+                      womenSafetyScore.tier === 'safe' ? 'green' : 
+                      womenSafetyScore.tier === 'moderate' ? 'yellow' : 'red'
+                    }
+                    fontSize="md"
+                    px="3"
+                    py="2"
+                    borderRadius="md"
+                    display="flex"
+                    alignItems="center"
+                    gap="2"
+                  >
+                    <Icon as={FaShieldAlt} />
+                    {womenSafetyScore.badge}
+                  </Badge>
+                )}
+                
+                {womenFriendlyCertified && (
+                  <Badge 
+                    colorScheme="pink"
+                    fontSize="md"
+                    px="3"
+                    py="2"
+                    borderRadius="md"
+                  >
+                    ✓ Women-Friendly Certified
+                  </Badge>
+                )}
+              </Flex>
             </Box>
             <HStack>
               <Box>
@@ -157,6 +206,93 @@ function HotelDetails({ person }) {
                 </Text>
                 <Text fontSize={"lg"}>{description}</Text>
               </VStack>
+              
+              {/* SafeStay Context Panel */}
+              {(currentGuests || staffInfo || groupBookingAlert || (womenReviews && womenReviews.length > 0)) && (
+                <Box 
+                  bg="pink.50" 
+                  p="6" 
+                  borderRadius="lg" 
+                  border="2px solid" 
+                  borderColor="pink.200"
+                >
+                  <Heading size="md" mb="4" color="pink.700" display="flex" alignItems="center" gap="2">
+                    <Icon as={FaShieldAlt} />
+                    SafeStay Context Panel
+                  </Heading>
+                  
+                  {/* Group Booking Alert */}
+                  {groupBookingAlert && (
+                    <Alert status="warning" mb="4" borderRadius="md">
+                      <AlertIcon as={FaExclamationTriangle} />
+                      <Box>
+                        <AlertTitle>Group Booking Alert</AlertTitle>
+                        <AlertDescription>{groupBookingAlert.message}</AlertDescription>
+                      </Box>
+                    </Alert>
+                  )}
+                  
+                  {/* Current Guests */}
+                  {currentGuests && (
+                    <Box mb="4">
+                      <Text fontWeight="bold" mb="2" display="flex" alignItems="center" gap="2">
+                        <Icon as={FaUserFriends} color="pink.600" />
+                        Tonight's Guests
+                      </Text>
+                      <Text bg="white" p="3" borderRadius="md" fontSize="sm">
+                        {currentGuests}
+                      </Text>
+                    </Box>
+                  )}
+                  
+                  {/* Staff Info */}
+                  {staffInfo && (
+                    <Box mb="4">
+                      <Text fontWeight="bold" mb="2" display="flex" alignItems="center" gap="2">
+                        <Icon as={FaUsers} color="pink.600" />
+                        Staff Composition
+                      </Text>
+                      <Text bg="white" p="3" borderRadius="md" fontSize="sm">
+                        {staffInfo}
+                      </Text>
+                    </Box>
+                  )}
+                  
+                  {/* Women Reviews */}
+                  {womenReviews && womenReviews.length > 0 && (
+                    <Box>
+                      <Text fontWeight="bold" mb="3" display="flex" alignItems="center" gap="2">
+                        <Icon as={FaCheckCircle} color="pink.600" />
+                        What Women Travelers Say
+                      </Text>
+                      <VStack spacing="3" align="stretch">
+                        {womenReviews.slice(0, 3).map((review, index) => (
+                          <Box key={index} bg="white" p="4" borderRadius="md" borderLeft="4px solid" borderColor="pink.400">
+                            <Flex justifyContent="space-between" mb="2">
+                              <Text fontWeight="semibold" fontSize="sm">
+                                {review.name}
+                                {review.verified && (
+                                  <Badge ml="2" colorScheme="green" fontSize="xs">
+                                    Verified
+                                  </Badge>
+                                )}
+                              </Text>
+                              <Badge colorScheme="yellow">★ {review.rating}</Badge>
+                            </Flex>
+                            <Text fontSize="sm" color="gray.700" fontStyle="italic">
+                              "{review.text}"
+                            </Text>
+                            <Text fontSize="xs" color="gray.500" mt="2">
+                              {review.travelType === 'solo' ? '👤 Solo Traveler' : '👥 Group Travel'} • {review.date}
+                            </Text>
+                          </Box>
+                        ))}
+                      </VStack>
+                    </Box>
+                  )}
+                </Box>
+              )}
+              
               <Box>
                 <Text
                   fontSize={{ base: "16px", lg: "18px" }}
@@ -170,14 +306,28 @@ function HotelDetails({ person }) {
 
                 <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
                   <List spacing={2}>
-                    <ListItem>WiFi</ListItem>
-                    <ListItem>Parking</ListItem>{" "}
-                    <ListItem>Breakfast Included</ListItem>
+                    {amenities && amenities.slice(0, Math.ceil(amenities.length / 2)).map((amenity, index) => (
+                      <ListItem key={index}>{amenity}</ListItem>
+                    ))}
+                    {!amenities && (
+                      <>
+                        <ListItem>WiFi</ListItem>
+                        <ListItem>Parking</ListItem>
+                        <ListItem>Breakfast Included</ListItem>
+                      </>
+                    )}
                   </List>
                   <List spacing={2}>
-                    <ListItem>Laundry</ListItem>
-                    <ListItem>Pick-up and drop</ListItem>
-                    <ListItem>Early Check-In</ListItem>
+                    {amenities && amenities.slice(Math.ceil(amenities.length / 2)).map((amenity, index) => (
+                      <ListItem key={index}>{amenity}</ListItem>
+                    ))}
+                    {!amenities && (
+                      <>
+                        <ListItem>Laundry</ListItem>
+                        <ListItem>Pick-up and drop</ListItem>
+                        <ListItem>Early Check-In</ListItem>
+                      </>
+                    )}
                   </List>
                 </SimpleGrid>
               </Box>
