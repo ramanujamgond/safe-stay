@@ -47,6 +47,29 @@
       "staffInfo": "60% female staff • Female staff on duty tonight",
       "groupBookingAlert": null,
       "amenities": ["Female staff available", "No alcohol on-premise", "CCTV coverage", "24/7 security"],
+      "roomSafetyFeatures": {
+        "doorLockType": "Electronic keycard",
+        "cctvInCorridors": true,
+        "doorEye": true,
+        "doorChain": true,
+        "fullLengthMirror": true,
+        "emergencyButton": false
+      },
+      "neighborhoodSafety": {
+        "walkScore": 65,
+        "transitScore": 45,
+        "wellLit": true,
+        "nearest24hrStore": "1.2 km",
+        "nearestHospital": "8 km - Lataguri Primary Health Centre"
+      },
+      "travelBuddyInfo": {
+        "soloWomenThisWeek": 3,
+        "soloWomenThisMonth": 12
+      },
+      "checkInSafety": {
+        "recommendedTime": "Before 6 PM",
+        "lateArrivalWarning": true
+      },
       "womenReviews": [
         {
           "name": "Priya M.",
@@ -109,6 +132,29 @@
         "message": "This property has an active large group booking this weekend"
       },
       "amenities": ["Restaurant", "Parking", "WiFi"],
+      "roomSafetyFeatures": {
+        "doorLockType": "Standard key lock",
+        "cctvInCorridors": false,
+        "doorEye": true,
+        "doorChain": false,
+        "fullLengthMirror": false,
+        "emergencyButton": false
+      },
+      "neighborhoodSafety": {
+        "walkScore": 50,
+        "transitScore": 30,
+        "wellLit": false,
+        "nearest24hrStore": "3.5 km",
+        "nearestHospital": "8 km - Lataguri Primary Health Centre"
+      },
+      "travelBuddyInfo": {
+        "soloWomenThisWeek": 0,
+        "soloWomenThisMonth": 2
+      },
+      "checkInSafety": {
+        "recommendedTime": "Before 5 PM",
+        "lateArrivalWarning": true
+      },
       "womenReviews": [
         {
           "name": "Kavya S.",
@@ -151,6 +197,29 @@
       "staffInfo": "70% female staff • Female manager on duty",
       "groupBookingAlert": null,
       "amenities": ["Female staff available", "Women-only floor", "CCTV coverage", "24/7 security", "No alcohol served"],
+      "roomSafetyFeatures": {
+        "doorLockType": "Electronic keycard + deadbolt",
+        "cctvInCorridors": true,
+        "doorEye": true,
+        "doorChain": true,
+        "fullLengthMirror": true,
+        "emergencyButton": true
+      },
+      "neighborhoodSafety": {
+        "walkScore": 70,
+        "transitScore": 55,
+        "wellLit": true,
+        "nearest24hrStore": "800 m",
+        "nearestHospital": "12 km - Almora District Hospital"
+      },
+      "travelBuddyInfo": {
+        "soloWomenThisWeek": 5,
+        "soloWomenThisMonth": 18
+      },
+      "checkInSafety": {
+        "recommendedTime": "Anytime - 24/7 reception",
+        "lateArrivalWarning": false
+      },
       "womenReviews": [
         {
           "name": "Meera R.",
@@ -205,6 +274,29 @@
         "message": "Large male group booking active. Limited staff availability."
       },
       "amenities": ["Basic WiFi", "Parking"],
+      "roomSafetyFeatures": {
+        "doorLockType": "Standard key lock",
+        "cctvInCorridors": false,
+        "doorEye": false,
+        "doorChain": false,
+        "fullLengthMirror": false,
+        "emergencyButton": false
+      },
+      "neighborhoodSafety": {
+        "walkScore": 40,
+        "transitScore": 25,
+        "wellLit": false,
+        "nearest24hrStore": "5 km",
+        "nearestHospital": "15 km - Tawang District Hospital"
+      },
+      "travelBuddyInfo": {
+        "soloWomenThisWeek": 0,
+        "soloWomenThisMonth": 1
+      },
+      "checkInSafety": {
+        "recommendedTime": "Before 4 PM",
+        "lateArrivalWarning": true
+      },
       "womenReviews": [
         {
           "name": "Ritu P.",
@@ -247,6 +339,29 @@
       "staffInfo": "55% female staff • Female staff on duty 24/7",
       "groupBookingAlert": null,
       "amenities": ["Female staff available", "Safe zones", "CCTV coverage", "Emergency contact", "No alcohol policy"],
+      "roomSafetyFeatures": {
+        "doorLockType": "Electronic keycard",
+        "cctvInCorridors": true,
+        "doorEye": true,
+        "doorChain": true,
+        "fullLengthMirror": true,
+        "emergencyButton": true
+      },
+      "neighborhoodSafety": {
+        "walkScore": 60,
+        "transitScore": 40,
+        "wellLit": true,
+        "nearest24hrStore": "2 km",
+        "nearestHospital": "28 km - Ukhimath Community Health Centre"
+      },
+      "travelBuddyInfo": {
+        "soloWomenThisWeek": 6,
+        "soloWomenThisMonth": 22
+      },
+      "checkInSafety": {
+        "recommendedTime": "Anytime - 24/7 reception",
+        "lateArrivalWarning": false
+      },
       "womenReviews": [
         {
           "name": "Sneha K.",
@@ -297,6 +412,29 @@
       "staffInfo": "30% female staff • Female staff available during day",
       "groupBookingAlert": null,
       "amenities": ["WiFi", "Restaurant", "Parking", "Garden"],
+      "roomSafetyFeatures": {
+        "doorLockType": "Standard key lock",
+        "cctvInCorridors": true,
+        "doorEye": true,
+        "doorChain": true,
+        "fullLengthMirror": false,
+        "emergencyButton": false
+      },
+      "neighborhoodSafety": {
+        "walkScore": 55,
+        "transitScore": 35,
+        "wellLit": false,
+        "nearest24hrStore": "2.5 km",
+        "nearestHospital": "8 km - Lataguri Primary Health Centre"
+      },
+      "travelBuddyInfo": {
+        "soloWomenThisWeek": 1,
+        "soloWomenThisMonth": 5
+      },
+      "checkInSafety": {
+        "recommendedTime": "Before 6 PM",
+        "lateArrivalWarning": true
+      },
       "womenReviews": [
         {
           "name": "Nisha D.",
@@ -339,6 +477,29 @@
       "staffInfo": "90% female staff • Women-only property",
       "groupBookingAlert": null,
       "amenities": ["Female staff only", "Women-only property", "Yoga classes", "Spa", "CCTV coverage", "24/7 security"],
+      "roomSafetyFeatures": {
+        "doorLockType": "Electronic keycard + deadbolt",
+        "cctvInCorridors": true,
+        "doorEye": true,
+        "doorChain": true,
+        "fullLengthMirror": true,
+        "emergencyButton": true
+      },
+      "neighborhoodSafety": {
+        "walkScore": 75,
+        "transitScore": 60,
+        "wellLit": true,
+        "nearest24hrStore": "500 m",
+        "nearestHospital": "12 km - Almora District Hospital"
+      },
+      "travelBuddyInfo": {
+        "soloWomenThisWeek": 10,
+        "soloWomenThisMonth": 35
+      },
+      "checkInSafety": {
+        "recommendedTime": "Anytime - Women-only property",
+        "lateArrivalWarning": false
+      },
       "womenReviews": [
         {
           "name": "Aisha M.",
@@ -389,6 +550,29 @@
       "staffInfo": "50% female staff • Female staff on duty",
       "groupBookingAlert": null,
       "amenities": ["Female staff available", "CCTV coverage", "24/7 reception", "Cultural tours"],
+      "roomSafetyFeatures": {
+        "doorLockType": "Electronic keycard",
+        "cctvInCorridors": true,
+        "doorEye": true,
+        "doorChain": true,
+        "fullLengthMirror": true,
+        "emergencyButton": false
+      },
+      "neighborhoodSafety": {
+        "walkScore": 68,
+        "transitScore": 50,
+        "wellLit": true,
+        "nearest24hrStore": "1 km",
+        "nearestHospital": "1.8 km - Tawang District Hospital"
+      },
+      "travelBuddyInfo": {
+        "soloWomenThisWeek": 4,
+        "soloWomenThisMonth": 15
+      },
+      "checkInSafety": {
+        "recommendedTime": "Anytime - 24/7 reception",
+        "lateArrivalWarning": false
+      },
       "womenReviews": [
         {
           "name": "Tanvi S.",

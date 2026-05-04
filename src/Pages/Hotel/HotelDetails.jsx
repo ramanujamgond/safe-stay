@@ -41,13 +41,21 @@ import { HotelFooter } from "./HotelFooter";
 import { useSelector } from "react-redux";
 import hotelData from "../../db.json";
 import SafetyBriefModal from "../../components/SafetyBriefModal";
+import LocationAlertNudge from "../../components/LocationAlertNudge";
 
 function HotelDetails({ person }) {
   const [singleHotel, setSingleHotel] = useState([]);
   const { id } = useParams();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isOpen: isSafetyBriefOpen, onOpen: onSafetyBriefOpen, onClose: onSafetyBriefClose } = useDisclosure();
+  const { isOpen: isLocationAlertOpen, onOpen: onLocationAlertOpen, onClose: onLocationAlertClose } = useDisclosure();
   const [showSafetyPing, setShowSafetyPing] = useState(false);
+
+  // Call all hooks at the top level
+  const yellowColor = useColorModeValue("yellow.500", "yellow.300");
+  const grayColor = useColorModeValue("gray.500", "gray.400");
+  const textColor = useColorModeValue("gray.900", "gray.400");
+  const dividerColor = useColorModeValue("gray.200", "gray.600");
 
   const { isAuth } = useSelector((store) => {
     console.log(store);
@@ -60,7 +68,11 @@ function HotelDetails({ person }) {
     const hotel = hotelData.hotel.find(h => h.id === parseInt(id));
     if (hotel) {
       setSingleHotel(hotel);
-      // Auto-show safety brief for offbeat destinations
+      // Show location alert immediately for offbeat destinations
+      if (hotel.isOffbeat) {
+        setTimeout(() => onLocationAlertOpen(), 500);
+      }
+      // Auto-show safety brief for offbeat destinations (after location alert)
       if (hotel.isOffbeat) {
         setTimeout(() => onSafetyBriefOpen(), 1000);
       }
@@ -139,7 +151,7 @@ function HotelDetails({ person }) {
               <Text
                 bg="blue.100"
                 m="5"
-                color={useColorModeValue("gray.900", "gray.400")}
+                color={textColor}
                 fontWeight={500}
                 fontSize={"2xl"}
               >
@@ -203,13 +215,13 @@ function HotelDetails({ person }) {
               direction={"column"}
               divider={
                 <StackDivider
-                  borderColor={useColorModeValue("gray.200", "gray.600")}
+                  borderColor={dividerColor}
                 />
               }
             >
               <VStack spacing={{ base: 4, sm: 6 }}>
                 <Text
-                  color={useColorModeValue("gray.500", "gray.400")}
+                  color={grayColor}
                   fontSize={"2xl"}
                   fontWeight={"300"}
                 >
@@ -217,6 +229,106 @@ function HotelDetails({ person }) {
                 </Text>
                 <Text fontSize={"lg"}>{description}</Text>
               </VStack>
+              
+              {/* Room Safety Indicators */}
+              {singleHotel.roomSafetyFeatures && (
+                <Box>
+                  <Text
+                    fontSize={{ base: "16px", lg: "18px" }}
+                    color={yellowColor}
+                    fontWeight={"500"}
+                    textTransform={"uppercase"}
+                    mb={"4"}
+                  >
+                    🔒 Room Safety Features
+                  </Text>
+                  <SimpleGrid columns={{ base: 2, md: 3 }} spacing={3}>
+                    <Box bg={singleHotel.roomSafetyFeatures.doorLockType?.includes("Electronic") ? "green.50" : "gray.50"} p="3" borderRadius="md" textAlign="center">
+                      <Text fontSize="2xl" mb="1">🔐</Text>
+                      <Text fontSize="xs" fontWeight="semibold">{singleHotel.roomSafetyFeatures.doorLockType || "Standard Lock"}</Text>
+                    </Box>
+                    <Box bg={singleHotel.roomSafetyFeatures.cctvInCorridors ? "green.50" : "gray.50"} p="3" borderRadius="md" textAlign="center">
+                      <Text fontSize="2xl" mb="1">📹</Text>
+                      <Text fontSize="xs" fontWeight="semibold">CCTV {singleHotel.roomSafetyFeatures.cctvInCorridors ? "✓" : "✗"}</Text>
+                    </Box>
+                    <Box bg={singleHotel.roomSafetyFeatures.doorEye ? "green.50" : "gray.50"} p="3" borderRadius="md" textAlign="center">
+                      <Text fontSize="2xl" mb="1">👁️</Text>
+                      <Text fontSize="xs" fontWeight="semibold">Door Eye {singleHotel.roomSafetyFeatures.doorEye ? "✓" : "✗"}</Text>
+                    </Box>
+                    <Box bg={singleHotel.roomSafetyFeatures.doorChain ? "green.50" : "gray.50"} p="3" borderRadius="md" textAlign="center">
+                      <Text fontSize="2xl" mb="1">⛓️</Text>
+                      <Text fontSize="xs" fontWeight="semibold">Door Chain {singleHotel.roomSafetyFeatures.doorChain ? "✓" : "✗"}</Text>
+                    </Box>
+                    <Box bg={singleHotel.roomSafetyFeatures.fullLengthMirror ? "green.50" : "gray.50"} p="3" borderRadius="md" textAlign="center">
+                      <Text fontSize="2xl" mb="1">🪞</Text>
+                      <Text fontSize="xs" fontWeight="semibold">Full Mirror {singleHotel.roomSafetyFeatures.fullLengthMirror ? "✓" : "✗"}</Text>
+                    </Box>
+                    <Box bg={singleHotel.roomSafetyFeatures.emergencyButton ? "green.50" : "gray.50"} p="3" borderRadius="md" textAlign="center">
+                      <Text fontSize="2xl" mb="1">🚨</Text>
+                      <Text fontSize="xs" fontWeight="semibold">Emergency Button {singleHotel.roomSafetyFeatures.emergencyButton ? "✓" : "✗"}</Text>
+                    </Box>
+                  </SimpleGrid>
+                </Box>
+              )}
+              
+              {/* Neighborhood Safety & Check-in Time */}
+              {(singleHotel.neighborhoodSafety || singleHotel.checkInSafety) && (
+                <Box>
+                  <Text
+                    fontSize={{ base: "16px", lg: "18px" }}
+                    color={yellowColor}
+                    fontWeight={"500"}
+                    textTransform={"uppercase"}
+                    mb={"4"}
+                  >
+                    📍 Location & Timing Safety
+                  </Text>
+                  <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
+                    {singleHotel.neighborhoodSafety && (
+                      <Box bg="blue.50" p="4" borderRadius="md">
+                        <Text fontWeight="bold" mb="2">Neighborhood Safety</Text>
+                        <VStack align="stretch" spacing="2" fontSize="sm">
+                          <Text>🚶 Walk Score: {singleHotel.neighborhoodSafety.walkScore}/100</Text>
+                          <Text>🚌 Transit Score: {singleHotel.neighborhoodSafety.transitScore}/100</Text>
+                          <Text>💡 Well-lit: {singleHotel.neighborhoodSafety.wellLit ? "Yes" : "Limited"}</Text>
+                          <Text>🏪 24hr Store: {singleHotel.neighborhoodSafety.nearest24hrStore}</Text>
+                          <Text>🏥 Hospital: {singleHotel.neighborhoodSafety.nearestHospital}</Text>
+                        </VStack>
+                      </Box>
+                    )}
+                    {singleHotel.checkInSafety && (
+                      <Box bg={singleHotel.checkInSafety.lateArrivalWarning ? "orange.50" : "green.50"} p="4" borderRadius="md">
+                        <Text fontWeight="bold" mb="2">Check-in Timing</Text>
+                        <VStack align="stretch" spacing="2" fontSize="sm">
+                          <Text>⏰ Recommended: {singleHotel.checkInSafety.recommendedTime}</Text>
+                          {singleHotel.checkInSafety.lateArrivalWarning && (
+                            <Alert status="warning" fontSize="xs" p="2">
+                              <AlertIcon />
+                              Late arrivals not recommended for safety
+                            </Alert>
+                          )}
+                        </VStack>
+                      </Box>
+                    )}
+                  </SimpleGrid>
+                </Box>
+              )}
+              
+              {/* Travel Buddy Info */}
+              {singleHotel.travelBuddyInfo && (
+                <Box bg="purple.50" p="4" borderRadius="md" border="1px solid" borderColor="purple.200">
+                  <Text fontWeight="bold" mb="2" display="flex" alignItems="center" gap="2">
+                    👥 Solo Women Travelers
+                  </Text>
+                  <Text fontSize="sm">
+                    {singleHotel.travelBuddyInfo.soloWomenThisWeek} solo women staying this week • 
+                    {singleHotel.travelBuddyInfo.soloWomenThisMonth} this month
+                  </Text>
+                  <Text fontSize="xs" color="gray.600" mt="2">
+                    You won't be alone - connect with other women travelers!
+                  </Text>
+                </Box>
+              )}
               
               {/* SafeStay Context Panel */}
               {(currentGuests || staffInfo || groupBookingAlert || (womenReviews && womenReviews.length > 0)) && (
@@ -307,7 +419,38 @@ function HotelDetails({ person }) {
               <Box>
                 <Text
                   fontSize={{ base: "16px", lg: "18px" }}
-                  color={useColorModeValue("yellow.500", "yellow.300")}
+                  color={yellowColor}
+                  fontWeight={"500"}
+                  textTransform={"uppercase"}
+                  mb={"4"}
+                >
+                  🆘 Emergency Contacts
+                </Text>
+
+                <SimpleGrid columns={{ base: 1, md: 2 }} spacing={3}>
+                  <Button 
+                    colorScheme="red" 
+                    size="lg" 
+                    leftIcon={<Text fontSize="xl">🚨</Text>}
+                    onClick={() => alert('Emergency: 112\nWomen Helpline: 1091\nMMT 24/7 Support: 1800-123-4567')}
+                  >
+                    Emergency Services
+                  </Button>
+                  <Button 
+                    colorScheme="pink" 
+                    size="lg" 
+                    leftIcon={<Text fontSize="xl">📞</Text>}
+                    onClick={() => alert('MMT 24/7 Safety Helpline: 1800-123-4567\nLocal Police: Check Safety Brief')}
+                  >
+                    MMT Safety Helpline
+                  </Button>
+                </SimpleGrid>
+              </Box>
+              
+              <Box>
+                <Text
+                  fontSize={{ base: "16px", lg: "18px" }}
+                  color={yellowColor}
                   fontWeight={"500"}
                   textTransform={"uppercase"}
                   mb={"4"}
@@ -345,7 +488,7 @@ function HotelDetails({ person }) {
               <Box>
                 <Text
                   fontSize={{ base: "16px", lg: "18px" }}
-                  color={useColorModeValue("yellow.500", "yellow.300")}
+                  color={yellowColor}
                   fontWeight={"500"}
                   textTransform={"uppercase"}
                   mb={"4"}
@@ -466,6 +609,15 @@ function HotelDetails({ person }) {
           </Stack>
         </SimpleGrid>
       </Container>
+      
+      {/* Location Alert Nudge for Offbeat Destinations */}
+      <LocationAlertNudge 
+        isOpen={isLocationAlertOpen} 
+        onClose={onLocationAlertClose} 
+        hotelName={name}
+        place={place}
+        isOffbeat={singleHotel.isOffbeat}
+      />
       
       {/* Safety Brief Modal for Offbeat Destinations */}
       {destinationData && (
