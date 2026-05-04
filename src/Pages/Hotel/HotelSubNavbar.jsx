@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { Link as RouteLink } from "react-router-dom";
 import "./HotelStyles/HotelLayout.css";
 import {
@@ -25,16 +24,12 @@ import {
 } from "@chakra-ui/react";
 import { FaShieldAlt, FaExclamationTriangle } from "react-icons/fa";
 import { HotelFooter } from "./HotelFooter";
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import {
-  hotelFailureAction,
-  hotelRequestAction,
-  hotelSuccessAction,
-} from "../../Redux/HotelRedux/actionHotel";
+import hotelData from "../../db.json";
 
 const HotelSubNavbar = () => {
   // Default Data
-
+  const [hotel, setHotel] = useState(hotelData.hotel);
+  const [filteredHotels, setFilteredHotels] = useState(hotelData.hotel);
   const [person, setPerson] = useState("");
   const [searchHotel, setSearchHotel] = useState("");
   const [sorting, setSorting] = useState("");
@@ -44,115 +39,58 @@ const HotelSubNavbar = () => {
   const [houseRulesValue, setHouseRulesValue] = useState("");
   const [page, setPage] = useState(1);
   const [womenFriendlyOnly, setWomenFriendlyOnly] = useState(false);
-  // API Base URL from environment variable
-  const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
-
-  //redux importing
+  const [isLoading, setIsLoading] = useState(false);
 
   const handlePerson = (e) => {
     setPerson(e.target.value);
-    // console.log(person);
   };
-  console.log(sorting);
-
-  const { hotel, isLoading } = useSelector((store) => {
-    // console.log(store.reducerHotel);
-    return {
-      hotel: store.reducerHotel.hotel,
-      isLoading: store.reducerHotel.isLoading,
-    };
-  }, shallowEqual);
-  
-  // Filter hotels based on women-friendly toggle
-  const filteredHotels = womenFriendlyOnly 
-    ? hotel.filter(h => h.isWomenFriendly) 
-    : hotel;
-  // console.log(isError);
-
-  const dispatch = useDispatch();
-  // _page=7&_limit=20
-  const getHotelData = () => {
-    dispatch(hotelRequestAction());
-    axios
-      .get(
-        `${API_BASE_URL}/hotel?_page=${page}_limit=10`
-      )
-      .then((res) => {
-        // console.log(res.data);
-        dispatch(hotelSuccessAction(res.data));
-      })
-      .catch((err) => {
-        // console.log(err);
-        dispatch(hotelFailureAction());
-      });
-  };
-
-  useEffect(() => {
-    getHotelData();
-  }, [page]);
-
-  // Button Functions
 
   const handleHotelSearch = (e) => {
     setSearchHotel(e.target.value);
-    console.log(searchHotel);
   };
+
+  // Apply all filters
+  useEffect(() => {
+    let result = [...hotelData.hotel];
+
+    // Search filter
+    if (searchHotel) {
+      const query = searchHotel.toLowerCase();
+      result = result.filter(h => 
+        h.name.toLowerCase().includes(query) || 
+        h.place.toLowerCase().includes(query)
+      );
+    }
+
+    // Women-friendly filter
+    if (womenFriendlyOnly) {
+      result = result.filter(h => h.isWomenFriendly);
+    }
+
+    // Price range filter
+    if (priceValue) {
+      const maxPrice = parseInt(priceValue);
+      const minPrice = maxPrice - 1000;
+      result = result.filter(h => h.price >= minPrice && h.price <= maxPrice);
+    }
+
+    // Sorting
+    if (sorting) {
+      result.sort((a, b) => {
+        if (sorting === 'asc') {
+          return a.price - b.price;
+        } else {
+          return b.price - a.price;
+        }
+      });
+    }
+
+    setFilteredHotels(result);
+  }, [searchHotel, womenFriendlyOnly, priceValue, sorting]);
 
   const HandleSearchButton = () => {
-    dispatch(hotelRequestAction());
-    axios
-      .get(
-        `${API_BASE_URL}/hotel?q=${searchHotel}&_page=${page}&_limit=10`
-      )
-      .then((res) => {
-        dispatch(hotelSuccessAction(res.data));
-      })
-      .catch((err) => {
-        dispatch(hotelFailureAction());
-      });
+    // Search is handled by useEffect
   };
-
-  // sorting
-
-  const HandleSorting = (sorting) => {
-    dispatch(hotelRequestAction());
-    axios
-      .get(
-        `${API_BASE_URL}/hotel?_page=${page}&_limit=10&_sort=price&_order=${sorting}`
-      )
-      .then((res) => {
-        dispatch(hotelSuccessAction(res.data));
-      })
-      .catch((err) => {
-        dispatch(hotelFailureAction());
-      });
-  };
-  useEffect(() => {
-    HandleSorting(sorting);
-  }, [sorting]);
-
-  // get via range
-
-  // posts?
-
-  const HandlePriceRange = (priceValue) => {
-    dispatch(hotelRequestAction());
-    axios
-      .get(
-        `${API_BASE_URL}/hotel?_page=${page}&_limit=10&price_gte=${
-          priceValue - 1000
-        }&price_lte=${priceValue}`
-      )
-      .then((res) => {
-        dispatch(hotelSuccessAction(res.data));
-      })
-      .catch((err) => {
-        dispatch(hotelFailureAction());
-      });
-  };
-  useEffect(() => {
-    HandlePriceRange(priceValue);
-  }, [priceValue]);
 
   return (
     <div>
@@ -434,7 +372,7 @@ const HotelSubNavbar = () => {
           {isLoading && (
             <Image src="https://i.ibb.co/2jqK3wx/loader.gif" alt="...Loading" />
           )}
-          {hotel.length === 0 && (
+          {filteredHotels.length === 0 && (
             <Heading>
               We apologize for any inconvenience, but unfortunately, we do not
               currently have any hotels available at the {searchHotel} location.

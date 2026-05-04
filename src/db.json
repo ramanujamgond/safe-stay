@@ -1,0 +1,470 @@
+{
+  "users": [
+    {
+      "number": "8106869838",
+      "user_name": "harsha",
+      "password": "123456",
+      "email": "",
+      "dob": "",
+      "gender": "",
+      "marital_status": null,
+      "id": 1
+    }
+  ],
+  "hotelcart": [],
+  "flightcart": [],
+  "flight": [],
+  "giftcards": [],
+  "hotel": [
+    {
+      "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800",
+      "img1": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800",
+      "img2": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800",
+      "img3": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
+      "img4": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800",
+      "rating": 4.5,
+      "ratingtext": "Excellent",
+      "ratingcomment": "Based on 156 Ratings and 89 reviews",
+      "name": "Jungle Retreat Lataguri",
+      "place": "Lataguri, West Bengal",
+      "description": "Couple Friendly | Women-Friendly Certified",
+      "additional": "Free Cancellation till 24 hrs before check in",
+      "taxes": 450,
+      "price": 2499,
+      "additional2": "",
+      "additional1": "Breakfast Included",
+      "id": 1,
+      "womenSafetyScore": {
+        "score": 8.7,
+        "tier": "safe",
+        "badge": "🟢 Safe Haven",
+        "color": "#10b981"
+      },
+      "isWomenFriendly": true,
+      "womenFriendlyCertified": true,
+      "isOffbeat": true,
+      "currentGuests": "Tonight: 2 solo women, 1 family",
+      "staffInfo": "60% female staff • Female staff on duty tonight",
+      "groupBookingAlert": null,
+      "amenities": ["Female staff available", "No alcohol on-premise", "CCTV coverage", "24/7 security"],
+      "womenReviews": [
+        {
+          "name": "Priya M.",
+          "verified": true,
+          "travelType": "solo",
+          "rating": 5,
+          "text": "Felt completely safe. Female staff at reception made check-in comfortable. The property is well-lit and secure.",
+          "date": "2024-03-15"
+        },
+        {
+          "name": "Anjali & Neha",
+          "verified": true,
+          "travelType": "women_group",
+          "rating": 5,
+          "text": "Perfect for a girls' trip. Staff was respectful and property felt secure. Loved the peaceful environment.",
+          "date": "2024-02-28"
+        },
+        {
+          "name": "Kavita S.",
+          "verified": true,
+          "travelType": "solo",
+          "rating": 5,
+          "text": "As a solo woman traveler, I felt very safe here. The staff was attentive without being intrusive.",
+          "date": "2024-01-10"
+        }
+      ]
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800",
+      "img1": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800",
+      "img2": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800",
+      "img3": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=800",
+      "img4": "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800",
+      "rating": 4.0,
+      "ratingtext": "Very Good",
+      "ratingcomment": "Based on 89 Ratings and 45 reviews",
+      "name": "Mountain View Resort",
+      "place": "Lataguri, West Bengal",
+      "description": "Scenic Views",
+      "additional": "",
+      "taxes": 342,
+      "price": 1899,
+      "additional2": "",
+      "additional1": "",
+      "id": 2,
+      "womenSafetyScore": {
+        "score": 5.2,
+        "tier": "moderate",
+        "badge": "🟡 Moderate",
+        "color": "#f59e0b"
+      },
+      "isWomenFriendly": false,
+      "womenFriendlyCertified": false,
+      "isOffbeat": true,
+      "currentGuests": "Tonight: 1 large group (12 guests), 1 couple",
+      "staffInfo": "20% female staff • No female staff on duty tonight",
+      "groupBookingAlert": {
+        "type": "group_booking",
+        "severity": "warning",
+        "message": "This property has an active large group booking this weekend"
+      },
+      "amenities": ["Restaurant", "Parking", "WiFi"],
+      "womenReviews": [
+        {
+          "name": "Kavya S.",
+          "verified": true,
+          "travelType": "solo",
+          "rating": 3,
+          "text": "Property was okay but felt isolated. Would recommend traveling with company. Staff could be more attentive.",
+          "date": "2024-01-20"
+        }
+      ]
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1596436889106-be35e843f974?w=800",
+      "img1": "https://images.unsplash.com/photo-1596436889106-be35e843f974?w=800",
+      "img2": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800",
+      "img3": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800",
+      "img4": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800",
+      "rating": 4.6,
+      "ratingtext": "Excellent",
+      "ratingcomment": "Based on 203 Ratings and 127 reviews",
+      "name": "Himalayan Serenity Lodge",
+      "place": "Binsar, Uttarakhand",
+      "description": "Women-Friendly Certified | Mountain Views",
+      "additional": "Free Cancellation",
+      "taxes": 540,
+      "price": 3299,
+      "additional2": "",
+      "additional1": "Breakfast & Dinner Included",
+      "id": 3,
+      "womenSafetyScore": {
+        "score": 9.1,
+        "tier": "safe",
+        "badge": "🟢 Safe Haven",
+        "color": "#10b981"
+      },
+      "isWomenFriendly": true,
+      "womenFriendlyCertified": true,
+      "isOffbeat": true,
+      "currentGuests": "Tonight: 3 solo women, 2 families",
+      "staffInfo": "70% female staff • Female manager on duty",
+      "groupBookingAlert": null,
+      "amenities": ["Female staff available", "Women-only floor", "CCTV coverage", "24/7 security", "No alcohol served"],
+      "womenReviews": [
+        {
+          "name": "Meera R.",
+          "verified": true,
+          "travelType": "solo",
+          "rating": 5,
+          "text": "Absolutely loved my stay! The female manager was incredibly helpful. Felt like a home away from home.",
+          "date": "2024-03-20"
+        },
+        {
+          "name": "Divya & Friends",
+          "verified": true,
+          "travelType": "women_group",
+          "rating": 5,
+          "text": "Best place for women travelers. Staff went out of their way to make us comfortable. Highly recommend!",
+          "date": "2024-03-05"
+        }
+      ]
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1587061949409-02df41d5e562?w=800",
+      "img1": "https://images.unsplash.com/photo-1587061949409-02df41d5e562?w=800",
+      "img2": "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800",
+      "img3": "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800",
+      "img4": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800",
+      "rating": 3.8,
+      "ratingtext": "Good",
+      "ratingcomment": "Based on 67 Ratings and 34 reviews",
+      "name": "Valley View Inn",
+      "place": "Tawang, Arunachal Pradesh",
+      "description": "Budget Friendly",
+      "additional": "",
+      "taxes": 270,
+      "price": 1599,
+      "additional2": "",
+      "additional1": "",
+      "id": 4,
+      "womenSafetyScore": {
+        "score": 4.5,
+        "tier": "caution",
+        "badge": "🔴 Use Caution",
+        "color": "#ef4444"
+      },
+      "isWomenFriendly": false,
+      "womenFriendlyCertified": false,
+      "isOffbeat": true,
+      "currentGuests": "Tonight: 1 male group (8 guests)",
+      "staffInfo": "10% female staff • No female staff available",
+      "groupBookingAlert": {
+        "type": "group_booking",
+        "severity": "warning",
+        "message": "Large male group booking active. Limited staff availability."
+      },
+      "amenities": ["Basic WiFi", "Parking"],
+      "womenReviews": [
+        {
+          "name": "Ritu P.",
+          "verified": true,
+          "travelType": "solo",
+          "rating": 2,
+          "text": "Felt uncomfortable as the only woman guest. Staff was not very responsive. Would not recommend for solo women.",
+          "date": "2024-02-10"
+        }
+      ]
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800",
+      "img1": "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800",
+      "img2": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800",
+      "img3": "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800",
+      "img4": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800",
+      "rating": 4.7,
+      "ratingtext": "Excellent",
+      "ratingcomment": "Based on 178 Ratings and 98 reviews",
+      "name": "Chopta Meadows Retreat",
+      "place": "Chopta, Uttarakhand",
+      "description": "Women-Friendly Certified | Eco-Friendly",
+      "additional": "Free Cancellation till 48 hrs before check in",
+      "taxes": 495,
+      "price": 2899,
+      "additional2": "",
+      "additional1": "All Meals Included",
+      "id": 5,
+      "womenSafetyScore": {
+        "score": 8.9,
+        "tier": "safe",
+        "badge": "🟢 Safe Haven",
+        "color": "#10b981"
+      },
+      "isWomenFriendly": true,
+      "womenFriendlyCertified": true,
+      "isOffbeat": true,
+      "currentGuests": "Tonight: 4 solo women, 3 couples, 1 family",
+      "staffInfo": "55% female staff • Female staff on duty 24/7",
+      "groupBookingAlert": null,
+      "amenities": ["Female staff available", "Safe zones", "CCTV coverage", "Emergency contact", "No alcohol policy"],
+      "womenReviews": [
+        {
+          "name": "Sneha K.",
+          "verified": true,
+          "travelType": "solo",
+          "rating": 5,
+          "text": "One of the safest places I've stayed at. The staff is amazing and very respectful. Perfect for solo women travelers.",
+          "date": "2024-03-18"
+        },
+        {
+          "name": "Pooja & Shruti",
+          "verified": true,
+          "travelType": "women_group",
+          "rating": 5,
+          "text": "Felt completely safe throughout our stay. The property is well-maintained and staff is very professional.",
+          "date": "2024-03-01"
+        }
+      ]
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800",
+      "img1": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800",
+      "img2": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
+      "img3": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800",
+      "img4": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800",
+      "rating": 4.2,
+      "ratingtext": "Very Good",
+      "ratingcomment": "Based on 112 Ratings and 67 reviews",
+      "name": "Riverside Cottage Lataguri",
+      "place": "Lataguri, West Bengal",
+      "description": "Couple Friendly | Nature Views",
+      "additional": "",
+      "taxes": 378,
+      "price": 2199,
+      "additional2": "",
+      "additional1": "Breakfast Included",
+      "id": 6,
+      "womenSafetyScore": {
+        "score": 6.8,
+        "tier": "moderate",
+        "badge": "🟡 Moderate",
+        "color": "#f59e0b"
+      },
+      "isWomenFriendly": false,
+      "womenFriendlyCertified": false,
+      "isOffbeat": true,
+      "currentGuests": "Tonight: 2 couples, 1 family",
+      "staffInfo": "30% female staff • Female staff available during day",
+      "groupBookingAlert": null,
+      "amenities": ["WiFi", "Restaurant", "Parking", "Garden"],
+      "womenReviews": [
+        {
+          "name": "Nisha D.",
+          "verified": true,
+          "travelType": "couple",
+          "rating": 4,
+          "text": "Nice property but a bit isolated. Staff was helpful during the day. Would recommend for couples.",
+          "date": "2024-02-25"
+        }
+      ]
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800",
+      "img1": "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800",
+      "img2": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800",
+      "img3": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
+      "img4": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800",
+      "rating": 4.8,
+      "ratingtext": "Excellent",
+      "ratingcomment": "Based on 234 Ratings and 145 reviews",
+      "name": "Women's Wellness Retreat Binsar",
+      "place": "Binsar, Uttarakhand",
+      "description": "Women-Friendly Certified | Wellness Focused",
+      "additional": "Free Cancellation",
+      "taxes": 630,
+      "price": 3799,
+      "additional2": "",
+      "additional1": "All Meals & Yoga Included",
+      "id": 7,
+      "womenSafetyScore": {
+        "score": 9.5,
+        "tier": "safe",
+        "badge": "🟢 Safe Haven",
+        "color": "#10b981"
+      },
+      "isWomenFriendly": true,
+      "womenFriendlyCertified": true,
+      "isOffbeat": true,
+      "currentGuests": "Tonight: 8 solo women, 2 women groups",
+      "staffInfo": "90% female staff • Women-only property",
+      "groupBookingAlert": null,
+      "amenities": ["Female staff only", "Women-only property", "Yoga classes", "Spa", "CCTV coverage", "24/7 security"],
+      "womenReviews": [
+        {
+          "name": "Aisha M.",
+          "verified": true,
+          "travelType": "solo",
+          "rating": 5,
+          "text": "This is THE place for women travelers. All-women staff, safe environment, and amazing wellness programs.",
+          "date": "2024-03-22"
+        },
+        {
+          "name": "Radhika & Team",
+          "verified": true,
+          "travelType": "women_group",
+          "rating": 5,
+          "text": "Perfect retreat for our women's group. Felt completely safe and rejuvenated. Highly recommend!",
+          "date": "2024-03-12"
+        }
+      ]
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=800",
+      "img1": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=800",
+      "img2": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800",
+      "img3": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800",
+      "img4": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800",
+      "rating": 4.4,
+      "ratingtext": "Very Good",
+      "ratingcomment": "Based on 145 Ratings and 78 reviews",
+      "name": "Tawang Heritage Hotel",
+      "place": "Tawang, Arunachal Pradesh",
+      "description": "Women-Friendly | Cultural Experience",
+      "additional": "Free Cancellation till 24 hrs before check in",
+      "taxes": 450,
+      "price": 2699,
+      "additional2": "",
+      "additional1": "Breakfast Included",
+      "id": 8,
+      "womenSafetyScore": {
+        "score": 7.8,
+        "tier": "safe",
+        "badge": "🟢 Safe Haven",
+        "color": "#10b981"
+      },
+      "isWomenFriendly": true,
+      "womenFriendlyCertified": true,
+      "isOffbeat": true,
+      "currentGuests": "Tonight: 2 solo women, 3 families",
+      "staffInfo": "50% female staff • Female staff on duty",
+      "groupBookingAlert": null,
+      "amenities": ["Female staff available", "CCTV coverage", "24/7 reception", "Cultural tours"],
+      "womenReviews": [
+        {
+          "name": "Tanvi S.",
+          "verified": true,
+          "travelType": "solo",
+          "rating": 5,
+          "text": "Wonderful experience! Staff was very helpful and made me feel safe. Great cultural insights too.",
+          "date": "2024-03-08"
+        },
+        {
+          "name": "Lakshmi P.",
+          "verified": true,
+          "travelType": "solo",
+          "rating": 4,
+          "text": "Good property with attentive staff. Felt safe throughout my stay. Would recommend for solo women.",
+          "date": "2024-02-15"
+        }
+      ]
+    }
+  ],
+  "destinations": [
+    {
+      "id": "lataguri",
+      "name": "Lataguri, West Bengal",
+      "isOffbeat": true,
+      "safetyBrief": {
+        "nearestPoliceStation": "Lataguri Police Station (2.3 km)",
+        "emergencyContact": "MMT 24/7 Helpline: 1800-123-4567",
+        "communityTips": [
+          "Most properties are isolated — check guest occupancy before booking",
+          "Limited mobile network in some areas — download offline maps",
+          "Local transport can be scarce after 8 PM — plan accordingly"
+        ]
+      }
+    },
+    {
+      "id": "binsar",
+      "name": "Binsar, Uttarakhand",
+      "isOffbeat": true,
+      "safetyBrief": {
+        "nearestPoliceStation": "Binsar Police Chowki (3.5 km)",
+        "emergencyContact": "MMT 24/7 Helpline: 1800-123-4567",
+        "communityTips": [
+          "Mountain roads can be challenging — book properties with pickup service",
+          "Weather changes quickly — carry warm clothing even in summer",
+          "Most hotels have good mobile connectivity"
+        ]
+      }
+    },
+    {
+      "id": "tawang",
+      "name": "Tawang, Arunachal Pradesh",
+      "isOffbeat": true,
+      "safetyBrief": {
+        "nearestPoliceStation": "Tawang Police Station (1.8 km)",
+        "emergencyContact": "MMT 24/7 Helpline: 1800-123-4567",
+        "communityTips": [
+          "Inner Line Permit required for entry — arrange in advance",
+          "High altitude location — acclimatize properly",
+          "Limited ATMs — carry sufficient cash"
+        ]
+      }
+    },
+    {
+      "id": "chopta",
+      "name": "Chopta, Uttarakhand",
+      "isOffbeat": true,
+      "safetyBrief": {
+        "nearestPoliceStation": "Ukhimath Police Station (28 km)",
+        "emergencyContact": "MMT 24/7 Helpline: 1800-123-4567",
+        "communityTips": [
+          "Very remote location — book properties with good reviews",
+          "No ATMs nearby — carry cash",
+          "Mobile network is limited — inform family before arrival"
+        ]
+      }
+    }
+  ]
+}

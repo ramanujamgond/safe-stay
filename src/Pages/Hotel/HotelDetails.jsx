@@ -21,7 +21,6 @@ import {
   AlertTitle,
   AlertDescription,
 } from "@chakra-ui/react";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaShieldAlt, FaUserFriends, FaUsers, FaExclamationTriangle, FaCheckCircle } from "react-icons/fa";
 import { MdLocalShipping } from "react-icons/md";
@@ -40,6 +39,7 @@ import {
 import { Link as RouteLink } from "react-router-dom";
 import { HotelFooter } from "./HotelFooter";
 import { useSelector } from "react-redux";
+import hotelData from "../../db.json";
 
 function HotelDetails({ person }) {
   const [singleHotel, setSingleHotel] = useState([]);
@@ -54,16 +54,10 @@ function HotelDetails({ person }) {
   });
 
   const SingleData = () => {
-    const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
-    axios
-      .get(`${API_BASE_URL}/hotel/${id}`)
-      .then((res) => {
-        // console.log(res.data);
-        setSingleHotel(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const hotel = hotelData.hotel.find(h => h.id === parseInt(id));
+    if (hotel) {
+      setSingleHotel(hotel);
+    }
   };
 
   useEffect(() => {
