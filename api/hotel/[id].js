@@ -1,5 +1,5 @@
 // Vercel Serverless Function to serve single hotel data
-const hotels = require('../../db.json').hotel;
+import hotels from '../../db.json';
 
 export default function handler(req, res) {
   // Enable CORS
@@ -12,7 +12,7 @@ export default function handler(req, res) {
   }
 
   const { id } = req.query;
-  const hotel = hotels.find(h => h.id === parseInt(id));
+  const hotel = hotels.hotel.find(h => h.id === parseInt(id));
 
   if (hotel) {
     res.status(200).json(hotel);
