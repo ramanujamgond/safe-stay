@@ -40,11 +40,14 @@ import { Link as RouteLink } from "react-router-dom";
 import { HotelFooter } from "./HotelFooter";
 import { useSelector } from "react-redux";
 import hotelData from "../../db.json";
+import SafetyBriefModal from "../../components/SafetyBriefModal";
 
 function HotelDetails({ person }) {
   const [singleHotel, setSingleHotel] = useState([]);
   const { id } = useParams();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen: isSafetyBriefOpen, onOpen: onSafetyBriefOpen, onClose: onSafetyBriefClose } = useDisclosure();
+  const [showSafetyPing, setShowSafetyPing] = useState(false);
 
   const { isAuth } = useSelector((store) => {
     console.log(store);
@@ -57,12 +60,31 @@ function HotelDetails({ person }) {
     const hotel = hotelData.hotel.find(h => h.id === parseInt(id));
     if (hotel) {
       setSingleHotel(hotel);
+      // Auto-show safety brief for offbeat destinations
+      if (hotel.isOffbeat) {
+        setTimeout(() => onSafetyBriefOpen(), 1000);
+      }
     }
   };
 
   useEffect(() => {
     SingleData();
   }, []);
+
+  // Get destination data for safety brief
+  const destinationData = singleHotel.place ? 
+    hotelData.destinations.find(d => singleHotel.place.includes(d.name.split(',')[0])) : 
+    null;
+
+  // Simulate post-booking safety ping (show after 3 seconds of "booking")
+  const handleProceedToPayment = () => {
+    onOpen();
+    // Simulate booking completion and show safety ping
+    setTimeout(() => {
+      onClose();
+      setShowSafetyPing(true);
+    }, 3000);
+  };
 
   const {
     image,
@@ -372,13 +394,12 @@ function HotelDetails({ person }) {
               <Button
                 variant="solid"
                 colorScheme="blue"
-                onClick={onOpen}
+                onClick={handleProceedToPayment}
                 rounded={"none"}
                 w={"full"}
                 mt={8}
                 size={"lg"}
                 py={"7"}
-                // color={useColorModeValue("white", "gray.900")}
                 borderRadius="5"
                 textTransform={"uppercase"}
                 _hover={{
@@ -392,13 +413,12 @@ function HotelDetails({ person }) {
               <Button
                 variant="solid"
                 colorScheme="blue"
-                // onClick={onOpen}
+                onClick={handleProceedToPayment}
                 rounded={"none"}
                 w={"full"}
                 mt={8}
                 size={"lg"}
                 py={"7"}
-                // color={useColorModeValue("white", "gray.900")}
                 borderRadius="5"
                 textTransform={"uppercase"}
                 _hover={{
@@ -446,6 +466,71 @@ function HotelDetails({ person }) {
           </Stack>
         </SimpleGrid>
       </Container>
+      
+      {/* Safety Brief Modal for Offbeat Destinations */}
+      {destinationData && (
+        <SafetyBriefModal 
+          isOpen={isSafetyBriefOpen} 
+          onClose={onSafetyBriefClose} 
+          destination={destinationData} 
+        />
+      )}
+      
+      {/* Post Check-in Safety Ping */}
+      {showSafetyPing && (
+        <Box
+          position="fixed"
+          bottom="20px"
+          right="20px"
+          bg="white"
+          boxShadow="2xl"
+          borderRadius="lg"
+          p="6"
+          maxW="400px"
+          border="2px solid"
+          borderColor="pink.200"
+          zIndex="1000"
+        >
+          <VStack spacing="3" align="stretch">
+            <Flex alignItems="center" gap="2">
+              <Icon as={FaShieldAlt} color="pink.600" boxSize="24px" />
+              <Heading size="md">You've checked in!</Heading>
+            </Flex>
+            <Text fontSize="sm" color="gray.600">
+              You've checked in to {name}. Feeling safe?
+            </Text>
+            <Flex gap="2">
+              <Button 
+                colorScheme="green" 
+                flex="1" 
+                leftIcon={<Icon as={FaCheckCircle} />}
+                onClick={() => setShowSafetyPing(false)}
+              >
+                ✅ All Good
+              </Button>
+              <Button 
+                colorScheme="red" 
+                flex="1" 
+                leftIcon={<Icon as={FaExclamationTriangle} />}
+                onClick={() => {
+                  alert('Your concern has been flagged. MMT Safety Team will contact you shortly.');
+                  setShowSafetyPing(false);
+                }}
+              >
+                🚩 Flag Concern
+              </Button>
+            </Flex>
+            <Button 
+              size="sm" 
+              variant="ghost" 
+              onClick={() => setShowSafetyPing(false)}
+            >
+              Dismiss
+            </Button>
+          </VStack>
+        </Box>
+      )}
+      
       <HotelFooter />
     </>
   );
